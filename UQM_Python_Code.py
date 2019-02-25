@@ -6,15 +6,15 @@ from firebase import firebase
 import csv
 import geocoder
 
-firebase = firebase.FirebaseApplication("https://urban-quality-monitor.firebaseio.com/")
+firebase = firebase.FirebaseApplication("Your Firebase URL")
 adapter = pygatt.GATTToolBackend()
 locate = geocoder.ip('me')
 locate1 = locate.latlng
 #NXP Mac Address which is located at the back of the device
-BLE_ADDRESS = '00:60:37:0A:06:2F'
+BLE_ADDRESS = 'Your Rapid IoT MAC Address'
 #Adafruit IO Configuration
-ADAFRUIT_IO_USERNAME = "Dhairya_1998"
-ADAFRUIT_IO_KEY = "fad270f4a53047b29ce1c24687259129"
+ADAFRUIT_IO_USERNAME = "Your AIO Username"
+ADAFRUIT_IO_KEY = "Your AIO Key"
 
 aio = Client(ADAFRUIT_IO_USERNAME, ADAFRUIT_IO_KEY)   #Starting the Adafruit Client
 
@@ -28,7 +28,7 @@ pressure_feed = aio.feeds('pressure-feed')
 #Starting of the main fetching program
 try:
     adapter.start()     #Starting the BLE Adapter
-    device = adapter.connect("00:60:37:0A:06:2F")     #connect to the Rapid IoT prototying kit
+    device = adapter.connect(BLE_ADDRESS)     #connect to the Rapid IoT prototying kit
     
     while True:      #Loop to continuously fetch the vallues
 
